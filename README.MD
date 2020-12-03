@@ -9,5 +9,5 @@ para ejecutarlo asegurese primero de que el archivo tiene permisos de ejecución
 
 En caso de no tenerlos puede agregarlos con `chmod +x Program.sh`
 
-ylo ejecuta de la siguiente forma `./Program.sh`
+y lo ejecuta de la siguiente forma `./Program.sh`
 
