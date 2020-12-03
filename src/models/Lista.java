@@ -3,16 +3,23 @@ package models;
 public class Lista {
 
     private Nodo cabeza;
+    private int largo;
 
     public Nodo getCabeza() {
         return cabeza;
     }
 
+    public int getlargo(){
+        return largo;
+    }
+
     public Lista() {
         cabeza = null;
+        largo = 0;
     }
 
     public void add(int value) {
+        largo++;
         Nodo p = new Nodo(value);
         Nodo q = cabeza;
         Nodo s = null;
@@ -31,6 +38,7 @@ public class Lista {
     }
 
     public void remove(int value) {
+        largo--;
         Nodo q = cabeza;
         Nodo s = null, temp = null;
 
@@ -49,6 +57,35 @@ public class Lista {
             s.setNodoSiguiente(temp);
             temp.setNodoAnterior(s);
         }
+
+    }
+
+    public Lista reverse(){
+
+        Lista lista = new Lista();
+        Nodo iterador = cabeza;
+        while(this.cabeza != null){
+            while (iterador.getNodoSiguiente() != null) {
+                iterador = iterador.getNodoSiguiente();
+            }
+            if(iterador != null){
+                int value = iterador.getValue();
+                //System.out.println(iterador.getNodoAnterior().getValue());
+                lista.add(value);
+                this.remove(value);
+                iterador = cabeza;
+                if(iterador.getNodoAnterior() == null && iterador.getNodoSiguiente() == null){
+                    lista.add(this.cabeza.getValue());
+                    return lista;
+
+                    
+                }
+                
+            }
+            
+        }
+        return null;
+        
 
     }
 
