@@ -27,8 +27,8 @@ public class Menu extends JFrame {
         ancho = 800;
         alto = 450;
         btn = new JButton("Sumar");
-        inputUno = new JTextField("3453678945431205459462856");
-        inputDos = new JTextField("954593495150435786947648634902");
+        inputUno = new JTextField();
+        inputDos = new JTextField();
         title = new JLabel("Suma dos números grandes");
         result = new JLabel();
 
