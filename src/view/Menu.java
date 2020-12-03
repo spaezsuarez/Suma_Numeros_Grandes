@@ -70,6 +70,8 @@ public class Menu extends JFrame {
     public void initListeners(){
         btn.addActionListener((event) -> {
            Controller controlador = new Controller(inputUno.getText(),inputDos.getText());
+           controlador.start();
+           result.setText(controlador.getResult());
         });
     }
 

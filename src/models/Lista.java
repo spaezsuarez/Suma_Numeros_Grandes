@@ -18,7 +18,7 @@ public class Lista {
         largo = 0;
     }
 
-    public void add(int value) {
+    public void add(String value) {
         largo++;
         Nodo p = new Nodo(value);
         Nodo q = cabeza;
@@ -37,23 +37,25 @@ public class Lista {
         }
     }
 
-    public void remove(int value) {
+    public void remove(String value) {
         largo--;
         Nodo q = cabeza;
         Nodo s = null, temp = null;
 
-        while (q.getValue() != value) {
+        while (!(q.getValue().equals(value))) {
             q = q.getNodoSiguiente();
         }
 
         s = q.getNodoAnterior();
         temp = q.getNodoSiguiente();
-
-        if (temp == null) {
-            s.setNodoSiguiente(null);
+        
+        if (temp == null && s == null) {
+            cabeza = null;
         } else if (s == null) {
             cabeza = q.getNodoSiguiente();
-        } else {
+        } else if(temp == null){
+            s.setNodoSiguiente(null);
+        }else {
             s.setNodoSiguiente(temp);
             temp.setNodoAnterior(s);
         }
@@ -69,8 +71,7 @@ public class Lista {
                 iterador = iterador.getNodoSiguiente();
             }
             if(iterador != null){
-                int value = iterador.getValue();
-                //System.out.println(iterador.getNodoAnterior().getValue());
+                String value = iterador.getValue();
                 lista.add(value);
                 this.remove(value);
                 iterador = cabeza;

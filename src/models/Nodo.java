@@ -2,10 +2,10 @@ package models;
 
 public class Nodo {
 
-    private int value;
+    private String value;
     private Nodo nodoSiguiente,nodoAnterior;
 
-    public Nodo(int value){
+    public Nodo(String value){
         this.value = value;
         this.nodoSiguiente = null;
         this.nodoAnterior = null;
@@ -13,11 +13,11 @@ public class Nodo {
 
     public Nodo(){}
 
-    public void setValue(int value){
+    public void setValue(String value){
         this.value = value;
     }
 
-    public int getValue(){
+    public String getValue(){
         return value;
     }
 
