@@ -13,21 +13,33 @@ public class Controller {
     }
 
     public Lista initList(String data, Lista lista) {
-        for (int i = data.length(); i >= 0; i = i - 4) {
-            try {
-                lista.add(data.substring(i - 4, i));
-            } catch (IndexOutOfBoundsException e) {
 
-                String s = data.substring(0, i);
-                int rango = (4-s.length());
-                for(int z = 0; z < rango; z++ ){
-                    s = "0"+s;
+        if (data.length() == 1) {
+            String s = "000" + data;
+            lista.add(s);
+
+        } else {
+            for (int i = data.length(); i >= 0; i = i - 4) {
+                try {
+                    lista.add(data.substring(i - 4, i));
+                } catch (IndexOutOfBoundsException e) {
+
+                    String s = data.substring(0, i);
+                    int rango = (4 - s.length());
+                    for (int z = 0; z < rango; z++) {
+                        s = "0" + s;
+                    }
+                    lista.add(s);
                 }
-                lista.add(s);
             }
+
         }
 
-        return lista.reverse();
+        if (lista.getlargo() != 1) {
+            return lista.reverse();
+        }
+        return lista;
+
     }
 
     public Controller(String num1, String num2) {
@@ -36,6 +48,16 @@ public class Controller {
 
         listaUno = initList(num1, listaUno);
         listaDos = initList(num2, listaDos);
+
+        listaUno.escribir();
+        System.out.println("Largo: " + listaUno.getlargo());
+        System.out.println("Cabeza: " + listaUno.getCabeza().getValue());
+        System.out.println("Cola: " + listaUno.getCola().getValue());
+
+        listaDos.escribir();
+        System.out.println("Largo: " + listaDos.getlargo());
+        System.out.println("Cabeza: " + listaDos.getCabeza().getValue());
+        System.out.println("Cola: " + listaDos.getCola().getValue());
     }
 
     public void start(){
@@ -50,15 +72,12 @@ public class Controller {
             System.out.println("Result: " + result);
             System.out.println("\n");
 
-            
             while( iteradorUno != null && iteradorUno.getNodoSiguiente() != null){
                 iteradorUno = iteradorUno.getNodoSiguiente();
             }
             while( iteradorDos != null && iteradorDos.getNodoSiguiente() != null){
                 iteradorDos = iteradorDos.getNodoSiguiente();
             }
-            
-            
             for(int i = 4; i > 0; i--){
                 int valor = (iteradorUno == (null))?0:Integer.parseInt(iteradorUno.getValue().substring(i-1,i));
                 int valorDos = (iteradorDos == (null))?0:Integer.parseInt(iteradorDos.getValue().substring(i-1,i));
@@ -88,7 +107,6 @@ public class Controller {
                         suma = false;
                     }
                 }
-               
             }
 
             if(iteradorUno != null)
@@ -100,14 +118,6 @@ public class Controller {
             iteradorUno = listaUno.getCabeza();
             iteradorDos = listaDos.getCabeza();
         }
-        
-
-
-
-
-
-        
-
     }
 
 }

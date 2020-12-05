@@ -2,11 +2,15 @@ package models;
 
 public class Lista {
 
-    private Nodo cabeza;
+    private Nodo cabeza,cola;
     private int largo;
 
     public Nodo getCabeza() {
         return cabeza;
+    }
+
+    public Nodo getCola(){
+        return cola;
     }
 
     public int getlargo(){
@@ -31,9 +35,13 @@ public class Lista {
 
         if (s == null) {
             cabeza = p;
-        } else {
+        }else {
             s.setNodoSiguiente(p);
             p.setNodoAnterior(s);
+        }
+
+        if(p.getNodoSiguiente() == null){
+            cola = p;
         }
     }
 
@@ -66,20 +74,28 @@ public class Lista {
 
         Lista lista = new Lista();
         Nodo iterador = cabeza;
-        while(this.cabeza != null){
+        boolean estado = true;
+
+        /*if(cabeza.getNodoAnterior() == null && cabeza.getNodoSiguiente() == null){
+            lista.add(cabeza.getValue());
+            return lista;
+        }*/
+
+        while(estado){
             while (iterador.getNodoSiguiente() != null) {
                 iterador = iterador.getNodoSiguiente();
             }
             if(iterador != null){
+               
                 String value = iterador.getValue();
                 lista.add(value);
                 this.remove(value);
                 iterador = cabeza;
+                
                 if(iterador.getNodoAnterior() == null && iterador.getNodoSiguiente() == null){
                     lista.add(this.cabeza.getValue());
+                    estado = false;
                     return lista;
-
-                    
                 }
                 
             }
