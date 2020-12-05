@@ -2,18 +2,18 @@ package models;
 
 public class Lista {
 
-    private Nodo cabeza,cola;
+    private Nodo cabeza, cola;
     private int largo;
 
     public Nodo getCabeza() {
         return cabeza;
     }
 
-    public Nodo getCola(){
+    public Nodo getCola() {
         return cola;
     }
 
-    public int getlargo(){
+    public int getlargo() {
         return largo;
     }
 
@@ -35,12 +35,12 @@ public class Lista {
 
         if (s == null) {
             cabeza = p;
-        }else {
+        } else {
             s.setNodoSiguiente(p);
             p.setNodoAnterior(s);
         }
 
-        if(p.getNodoSiguiente() == null){
+        if (p.getNodoSiguiente() == null) {
             cola = p;
         }
     }
@@ -56,73 +56,35 @@ public class Lista {
 
         s = q.getNodoAnterior();
         temp = q.getNodoSiguiente();
-        
+
         if (temp == null && s == null) {
             cabeza = null;
         } else if (s == null) {
             cabeza = q.getNodoSiguiente();
-        } else if(temp == null){
+        } else if (temp == null) {
             s.setNodoSiguiente(null);
             cola = s;
-        }else {
+        } else {
             s.setNodoSiguiente(temp);
             temp.setNodoAnterior(s);
         }
 
     }
 
-    public Lista reverseList(int largo){
+    public Lista reverseList(int largo) {
+
         Lista lista = new Lista();
         Nodo iterador = cola;
 
-        for(int i = 0; i < largo; i++){
-            if(iterador != null){
+        for (int i = 0; i < largo; i++) {
+            if (iterador != null) {
                 String value = iterador.getValue();
                 lista.add(value);
                 this.remove(value);
             }
-
             iterador = cola;
-           
         }
-
         return lista;
-    }
-
-    public Lista reverse(){
-
-        Lista lista = new Lista();
-        Nodo iterador = cabeza;
-        boolean estado = true;
-
-        /*if(cabeza.getNodoAnterior() == null && cabeza.getNodoSiguiente() == null){
-            lista.add(cabeza.getValue());
-            return lista;
-        }*/
-
-        while(estado){
-            while (iterador.getNodoSiguiente() != null) {
-                iterador = iterador.getNodoSiguiente();
-            }
-            if(iterador != null){
-               
-                String value = iterador.getValue();
-                lista.add(value);
-                this.remove(value);
-                iterador = cabeza;
-                
-                if(iterador.getNodoAnterior() == null && iterador.getNodoSiguiente() == null){
-                    lista.add(this.cabeza.getValue());
-                    estado = false;
-                    return lista;
-                }
-                
-            }
-            
-        }
-        return null;
-        
-
     }
 
     public void escribir() {

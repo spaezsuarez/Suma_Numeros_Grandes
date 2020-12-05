@@ -5,6 +5,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -12,18 +13,17 @@ import java.awt.Color;
 
 import controllers.Controller;
 
-
 public class Menu extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private String font = "Bitstream Vera Sans";
 
-    private final int ancho,alto;
+    private final int ancho, alto;
     private JButton btn;
-    private JTextField inputUno,inputDos;
-    private JLabel title,result;
+    private JTextField inputUno, inputDos;
+    private JLabel title, result;
 
-    public Menu(){
+    public Menu() {
         ancho = 800;
         alto = 450;
         btn = new JButton("Sumar");
@@ -34,32 +34,33 @@ public class Menu extends JFrame {
 
     }
 
-    public void initElements(){
-        btn.setSize(new Dimension(200,40));
-        btn.setLocation((this.getWidth() - btn.getWidth())/2,375);
-        btn.setFont(new Font(font,Font.BOLD,30));
+    public void initElements() {
+        btn.setSize(new Dimension(200, 40));
+        btn.setLocation((this.getWidth() - btn.getWidth()) / 2, 375);
+        btn.setFont(new Font(font, Font.BOLD, 30));
         btn.setFocusable(false);
         add(btn);
 
-        inputUno.setSize(new Dimension(780,30));
+        inputUno.setSize(new Dimension(780, 30));
         inputUno.setLocation(10, 100);
-        inputUno.setFont(new Font(font,Font.PLAIN,15));
+        inputUno.setFont(new Font(font, Font.PLAIN, 15));
         inputUno.setHorizontalAlignment(SwingConstants.CENTER);
         add(inputUno);
 
-        inputDos.setSize(new Dimension(780,30));
+        inputDos.setSize(new Dimension(780, 30));
         inputDos.setLocation(10, 150);
-        inputDos.setFont(new Font(font,Font.PLAIN,15));
+        inputDos.setFont(new Font(font, Font.PLAIN, 15));
         inputDos.setHorizontalAlignment(SwingConstants.CENTER);
+
         add(inputDos);
 
-        title.setSize(new Dimension(ancho,100));
+        title.setSize(new Dimension(ancho, 100));
         title.setLocation(0, 10);
-        title.setFont(new Font(font,Font.BOLD,30));
+        title.setFont(new Font(font, Font.BOLD, 30));
         title.setHorizontalAlignment(SwingConstants.CENTER);
         add(title);
 
-        result.setSize(new Dimension(ancho-10, 150));
+        result.setSize(new Dimension(ancho - 10, 150));
         result.setLocation(5, 200);
         result.setHorizontalAlignment(SwingConstants.CENTER);
         result.setFont(new Font(font, Font.BOLD, 25));
@@ -67,29 +68,31 @@ public class Menu extends JFrame {
         add(result);
     }
 
-    public void initListeners(){
+    public void initListeners() {
         btn.addActionListener((event) -> {
-           Controller controlador = new Controller(inputUno.getText(),inputDos.getText());
-           controlador.start();
-           result.setText(controlador.getResult());
+            Controller controlador = new Controller(inputUno.getText(), inputDos.getText());
+            try {
+                controlador.start();
+                result.setText(controlador.getResult());
+                System.out.println(controlador.getResult());
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Solo valores numéricos enteros positivos", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
         });
     }
 
-
-    public void initTemplate(){
+    public void initTemplate() {
         setTitle("Menu");
         setLayout(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(new Dimension(ancho,alto));
+        setSize(new Dimension(ancho, alto));
         setResizable(false);
         setLocationRelativeTo(null);
         initElements();
         initListeners();
         setVisible(true);
-        
+
     }
 
-   
-    
-    
 }
