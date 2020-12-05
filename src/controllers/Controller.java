@@ -36,7 +36,7 @@ public class Controller {
         }
 
         if (lista.getlargo() != 1) {
-            return lista.reverse();
+            return lista.reverseList(lista.getlargo());
         }
         return lista;
 
@@ -67,10 +67,10 @@ public class Controller {
 
         while(listaPrincipal.getCabeza() != null){
 
-            listaUno.escribir();
+            /*listaUno.escribir();
             listaDos.escribir();
             System.out.println("Result: " + result);
-            System.out.println("\n");
+            System.out.println("\n");*/
 
             while( iteradorUno != null && iteradorUno.getNodoSiguiente() != null){
                 iteradorUno = iteradorUno.getNodoSiguiente();

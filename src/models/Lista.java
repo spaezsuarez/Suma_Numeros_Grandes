@@ -63,11 +63,30 @@ public class Lista {
             cabeza = q.getNodoSiguiente();
         } else if(temp == null){
             s.setNodoSiguiente(null);
+            cola = s;
         }else {
             s.setNodoSiguiente(temp);
             temp.setNodoAnterior(s);
         }
 
+    }
+
+    public Lista reverseList(int largo){
+        Lista lista = new Lista();
+        Nodo iterador = cola;
+
+        for(int i = 0; i < largo; i++){
+            if(iterador != null){
+                String value = iterador.getValue();
+                lista.add(value);
+                this.remove(value);
+            }
+
+            iterador = cola;
+           
+        }
+
+        return lista;
     }
 
     public Lista reverse(){
