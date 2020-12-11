@@ -74,7 +74,6 @@ public class Menu extends JFrame {
             try {
                 controlador.start();
                 result.setText(controlador.getResult());
-                System.out.println(controlador.getResult());
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Solo valores numéricos enteros positivos", "Error",
                         JOptionPane.ERROR_MESSAGE);
