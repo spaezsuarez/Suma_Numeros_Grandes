@@ -11,3 +11,6 @@ En caso de no tenerlos puede agregarlos con `chmod +x Program.sh`
 
 y lo ejecuta de la siguiente forma `./Program.sh`
 
+## Vistas
+
+![Menu](doc/Main.png)
